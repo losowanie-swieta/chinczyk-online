@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#11100f">
-<title>Polityczny Chińczyk v0.6.2</title>
+<title>Polityczny Chińczyk v0.7.0</title>
 <style>
 
 :root{color-scheme:dark;--gold:#e8c77f;--red:#c73543;--orange:#db7b2d;--green:#167d5b;--blue:#2774c8;--cream:#f3ead8}
@@ -28,6 +28,18 @@ main{width:min(100%,850px);margin:auto;padding:0 14px 32px}
 .panel{background:linear-gradient(145deg,#242321f5,#171615f5);border:1px solid #e8c77f26;border-radius:17px;padding:13px;box-shadow:0 10px 25px #0004,inset 0 1px #ffffff09;margin-bottom:12px}
 .toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .field{display:flex;align-items:center;gap:9px;color:#cfc4ae;font-size:13px;font-weight:750}
+input{min-height:40px;min-width:0;width:100%;border:1px solid #ffffff24;border-radius:10px;background:#292622;color:#fff;padding:7px 10px}
+.online-panel{border-color:#70b7df4a;background:linear-gradient(145deg,#202a30f5,#171615f5)}
+.online-heading{display:flex;align-items:center;gap:9px;margin-bottom:11px;color:#dcecf5;font-weight:950;letter-spacing:.05em}
+.online-controls{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:9px;margin:8px 0}
+.online-controls .field{display:flex;flex-direction:column;align-items:stretch;gap:5px}
+.online-btn{min-height:40px;border:1px solid #b3d9ec;border-radius:10px;padding:8px 12px;color:#10202a;background:linear-gradient(180deg,#d7effa,#8fc8e4);font-weight:900;white-space:nowrap;cursor:pointer}
+.online-btn.secondary{background:linear-gradient(180deg,#f5e8d2,#d6c09c);border-color:#e8d7b9;color:#2a2114}
+.online-btn.start{background:linear-gradient(180deg,#c9edcf,#79bd87);border-color:#c9edcf;color:#102717}
+#onlineStatus{margin-top:9px;font-size:12px;line-height:1.5;color:#c8d9df}
+#onlinePlayers{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.online-player{padding:5px 9px;border:1px solid #ffffff20;border-radius:999px;font-size:11px;color:#f3ead8;background:#ffffff09}
+.online-player.host:after{content:" ★";color:#e8c77f}
 select{min-height:40px;border:1px solid #ffffff24;border-radius:10px;background:#292622;color:#fff;padding:7px 12px}
 #restart{min-height:40px;border:1px solid #f7e1a5;border-radius:11px;padding:8px 15px;color:#21190b;font-weight:900;background:linear-gradient(180deg,#ffe9a9,#d6a84c);box-shadow:0 4px 0 #75501e,0 7px 13px #0003;cursor:pointer}
 #players{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
@@ -85,7 +97,7 @@ select{min-height:40px;border:1px solid #ffffff24;border-radius:10px;background:
 
 @keyframes pawnPulse{from{box-shadow:0 0 0 0 #fff0,inset 0 4px 3px #ffffff85,inset -4px -6px 6px #0005,0 3px 0 #0006,0 6px 8px #0007}to{box-shadow:0 0 0 4px #ffffff85,inset 0 4px 3px #ffffff85,inset -4px -6px 6px #0005,0 3px 0 #0006,0 8px 12px #0008}}
 .footnote{margin:9px 0 0;text-align:center;color:#aaa08e;font-size:11px}
-@media(max-width:620px){header{padding:10px 7px 8px}.hero{min-height:112px;padding:8px;gap:2px;border-radius:16px}.hero-person{width:clamp(34px,10vw,62px);height:clamp(58px,16vw,85px)}.hero-title h1{font-size:clamp(16px,4.2vw,25px)}.hero-title p{font-size:7px;letter-spacing:.08em;margin-top:6px}main{padding:0 7px 22px}.panel{padding:9px;border-radius:13px}.toolbar{gap:8px}.field{font-size:12px}select{max-width:125px;padding:7px}.player{padding:7px 4px 7px 8px;gap:4px;flex-direction:column;align-items:flex-start}.player-avatar{width:31px;height:31px;font-size:18px}.player-copy b{font-size:10px}.player-copy small{font-size:8px}.gamebar{grid-template-columns:1fr;gap:10px}#status{font-size:13px}.dice-wrap{justify-content:space-between}#dice{width:46px;height:46px;font-size:34px}#roll{flex:1}.board-panel{padding:6px}.board-frame{padding:3px;border-width:1px}.pawn{border-width:1px}}
+@media(max-width:620px){.online-controls{grid-template-columns:minmax(0,1fr) auto;gap:7px}.online-btn{padding:8px;font-size:11px}.online-controls .field{font-size:11px}header{padding:10px 7px 8px}.hero{min-height:112px;padding:8px;gap:2px;border-radius:16px}.hero-person{width:clamp(34px,10vw,62px);height:clamp(58px,16vw,85px)}.hero-title h1{font-size:clamp(16px,4.2vw,25px)}.hero-title p{font-size:7px;letter-spacing:.08em;margin-top:6px}main{padding:0 7px 22px}.panel{padding:9px;border-radius:13px}.toolbar{gap:8px}.field{font-size:12px}select{max-width:125px;padding:7px}.player{padding:7px 4px 7px 8px;gap:4px;flex-direction:column;align-items:flex-start}.player-avatar{width:31px;height:31px;font-size:18px}.player-copy b{font-size:10px}.player-copy small{font-size:8px}.gamebar{grid-template-columns:1fr;gap:10px}#status{font-size:13px}.dice-wrap{justify-content:space-between}#dice{width:46px;height:46px;font-size:34px}#roll{flex:1}.board-panel{padding:6px}.board-frame{padding:3px;border-width:1px}.pawn{border-width:1px}}
 @media(max-width:360px){.hero-person{width:30px;height:50px}.hero-title h1{font-size:15px}.hero-title p{letter-spacing:0}.version{font-size:8px;margin-top:5px}.player-copy b{font-size:9px}.player-copy small{font-size:7px}.board-panel{padding:4px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
 
@@ -95,11 +107,25 @@ select{min-height:40px;border:1px solid #ffffff24;border-radius:10px;background:
 <header>
  <section class="hero" aria-label="Polityczny Chińczyk — cztery drużyny">
   <div class="hero-side" id="heroLeft"></div>
-  <div class="hero-title"><h1>POLITYCZNY <span>CHIŃCZYK</span><small class="version">WERSJA 0.6.2</small></h1><p>Różne poglądy, jeden cel — wygrać!</p></div>
+  <div class="hero-title"><h1>POLITYCZNY <span>CHIŃCZYK</span><small class="version">WERSJA 0.7.0</small></h1><p>Różne poglądy, jeden cel — wygrać!</p></div>
   <div class="hero-side" id="heroRight"></div>
  </section>
 </header>
 <main>
+ <section class="panel online-panel">
+  <div class="online-heading">🌐 GRA ONLINE <span class="version">NOWOŚĆ 0.7.0</span></div>
+  <div class="online-controls">
+   <label class="field">Twój nick <input id="onlineName" maxlength="24" placeholder="Np. Wojtek" autocomplete="nickname"></label>
+   <button id="createRoom" class="online-btn">Utwórz pokój</button>
+  </div>
+  <div class="online-controls">
+   <label class="field">Kod pokoju <input id="roomCode" maxlength="6" placeholder="6 znaków" autocapitalize="characters"></label>
+   <button id="joinRoom" class="online-btn secondary">Dołącz do gry</button>
+   <button id="startOnline" class="online-btn start" hidden>Rozpocznij grę</button>
+  </div>
+  <div id="onlineStatus" aria-live="polite">Utwórz pokój i wyślij kod znajomym. Każdy gra na swoim telefonie.</div>
+  <div id="onlinePlayers"></div>
+ </section>
  <section class="panel toolbar">
   <div class="field"><label for="playersCount">Liczba graczy</label><select id="playersCount"><option value="2">2 osoby</option><option value="3">3 osoby</option><option value="4" selected>4 osoby</option></select></div>
   <button id="restart">↻ NOWA GRA</button>
@@ -112,6 +138,8 @@ select{min-height:40px;border:1px solid #ffffff24;border-radius:10px;background:
  <section class="panel board-panel"><div class="board-frame"><div id="board" aria-label="Plansza do gry w Politycznego Chińczyka"></div></div><p class="footnote">Gra lokalna na jednym urządzeniu • Kliknij lub dotknij pionek po rzucie</p></section>
 </main>
 <script>
+const SUPABASE_URL='https://adgzxpkfqfwsonesdjsx.supabase.co';
+const SUPABASE_KEY='sb_publishable_4B_vt1WsNKZOfcLp2aN0HQ_dspcQWX4';
 const TEAMS=[
  {name:'PiS',leader:'Jarosław Kaczyński',color:'#2774c8',base:'blue',symbol:'♟',hair:'#c8c4bc',skin:'#efc8a5',tie:'#2774c8',glasses:false},
  {name:'Platforma',leader:'Donald Tusk',color:'#db7b2d',base:'orange',symbol:'♟',hair:'#c6a17b',skin:'#efc6a0',tie:'#2b5b9c',glasses:false},
@@ -138,7 +166,76 @@ function setupBoard(){
 }
 setupBoard();
 let count=4,turn=0,dice=0,rolled=false,sixes=0,winner=-1,pawns=[],rollingDice=false,rollToken=0;
+let onlineRoom=null,onlinePlayerId=null,onlineSeat=-1,onlineIsHost=false,onlinePoll=null,onlineBusy=false,lastRemoteUpdated='';
 function say(s){$('status').textContent=s}
+async function rpc(name,args){
+ const res=await fetch(SUPABASE_URL+'/rest/v1/rpc/'+name,{method:'POST',headers:{'Content-Type':'application/json','apikey':SUPABASE_KEY,'Authorization':'Bearer '+SUPABASE_KEY},body:JSON.stringify(args)});
+ const data=await res.json().catch(()=>null);
+ if(!res.ok)throw new Error(data?.message||data?.hint||'Błąd połączenia z serwerem gry.');
+ return data;
+}
+function gameState(){return {count,turn,dice,rolled,sixes,winner,pawns};}
+function applyGameState(s){
+ if(!s||!Array.isArray(s.pawns))return;
+ count=s.count;turn=s.turn;dice=s.dice;rolled=s.rolled;sixes=s.sixes;winner=s.winner;pawns=s.pawns;
+ $('dice').textContent=['⚀','⚀','⚁','⚂','⚃','⚄','⚅'][dice]||'⚀';
+ $('roll').disabled=winner>=0;
+ if(winner>=0)say('🏆 Wygrywa '+TEAMS[winner].name+' — '+TEAMS[winner].leader+'!');
+ else if(rolled)say('Wynik: '+dice+'. Ruch wykonuje '+TEAMS[turn].name+'.');
+ else say('Tura: '+TEAMS[turn].name+'. Rzuć kostką.');
+ render();
+}
+async function saveOnlineState(){
+ if(!onlineRoom||onlineBusy)return;
+ onlineBusy=true;
+ try{await rpc('save_chinczyk_state',{p_code:onlineRoom,p_player_id:onlinePlayerId,p_state:gameState()});}
+ catch(e){$('onlineStatus').textContent='Nie udało się zsynchronizować ruchu: '+e.message;}
+ finally{onlineBusy=false;}
+}
+function showRoom(room){
+ $('onlinePlayers').innerHTML=(room.players||[]).map(p=>'<span class="online-player '+(p.host?'host':'')+'">'+escapeHtml(p.name)+(p.seat===onlineSeat?' (Ty)':'')+'</span>').join('');
+ $('onlineStatus').textContent='Pokój '+room.code+' · '+(room.players||[]).length+'/4 graczy · '+(room.started?'Gra trwa — stan synchronizuje się automatycznie.':(room.players||[]).length<2?'Czekamy na kolejnego gracza…':'Gotowi do gry. Założyciel może rozpocząć.'));
+ $('roomCode').value=room.code;
+ $('startOnline').hidden=!onlineIsHost||room.started;
+ $('startOnline').disabled=(room.players||[]).length<2;
+ $('createRoom').disabled=true;$('joinRoom').disabled=true;
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
+async function pollRoom(){
+ if(!onlineRoom)return;
+ try{
+  const room=await rpc('get_chinczyk_room',{p_code:onlineRoom});
+  if(!room){$('onlineStatus').textContent='Nie znaleziono pokoju. Utwórz nowy.';return}
+  showRoom(room);
+  const me=(room.players||[]).find(p=>p.id===onlinePlayerId);
+  if(me)onlineSeat=me.seat;
+  if(room.started&&room.game_state&&room.updated_at!==lastRemoteUpdated){
+   lastRemoteUpdated=room.updated_at;
+   if(!onlineBusy)applyGameState(room.game_state);
+  }
+ }catch(e){$('onlineStatus').textContent='Problem z połączeniem: '+e.message;}
+}
+async function enterRoom(kind){
+ const name=$('onlineName').value.trim();
+ if(!name){$('onlineStatus').textContent='Najpierw wpisz swój nick.';return}
+ $('createRoom').disabled=true;$('joinRoom').disabled=true;
+ try{
+  const data=kind==='create'?await rpc('create_chinczyk_room',{p_name:name}):await rpc('join_chinczyk_room',{p_code:$('roomCode').value,p_name:name});
+  onlineRoom=data.code;onlinePlayerId=data.player_id;onlineSeat=(data.players||[]).find(p=>p.id===onlinePlayerId)?.seat??0;onlineIsHost=!!(data.players||[]).find(p=>p.id===onlinePlayerId)?.host;
+  $('onlineStatus').textContent='Łączę z pokojem '+onlineRoom+'…';
+  await pollRoom();
+  if(onlinePoll)clearInterval(onlinePoll);
+  onlinePoll=setInterval(pollRoom,1800);
+ }catch(e){$('onlineStatus').textContent=e.message;$('createRoom').disabled=false;$('joinRoom').disabled=false}
+}
+async function startOnlineGame(){
+ if(!onlineRoom||!onlineIsHost)return;
+ const room=await rpc('get_chinczyk_room',{p_code:onlineRoom});
+ if(!room||room.players.length<2){$('onlineStatus').textContent='Potrzeba co najmniej 2 graczy.';return}
+ count=room.players.length;turn=0;dice=0;rolled=false;sixes=0;winner=-1;pawns=Array.from({length:count},()=>[-1,-1,-1,-1]);render();
+ try{await rpc('start_chinczyk_room',{p_code:onlineRoom,p_player_id:onlinePlayerId,p_state:gameState()});lastRemoteUpdated='';await pollRoom();}
+ catch(e){$('onlineStatus').textContent=e.message}
+}
 function reset(){rollToken++;rollingDice=false;count=+$('playersCount').value;turn=0;dice=0;rolled=false;sixes=0;winner=-1;pawns=Array.from({length:count},()=>[-1,-1,-1,-1]);$('dice').textContent='⚀';$('roll').disabled=false;say('Tura: '+TEAMS[turn].name+'. Rzuć kostką.');render()}
 function position(p,n){if(n<0||n>=57)return null;if(n>=52)return LANES[p][n-52];return track[(STARTS[p]+n)%52]}
 function faceSvg(p){
@@ -171,7 +268,7 @@ function render(){
  $('players').innerHTML=Array.from({length:count},(_,p)=>'<div class="player '+(turn===p&&winner<0?'active':'')+'" style="--team:'+TEAMS[p].color+'"><div class="player-avatar">'+['♟','♟','♣','✌'][p]+'</div><div class="player-copy"><b>'+TEAMS[p].name+'</b><small>'+TEAMS[p].leader+'<br>Baza: '+pawns[p].filter(n=>n===-1).length+' · Dom: '+pawns[p].filter(n=>n===57).length+'</small></div></div>').join('');
 }
 function roll(){
- if(rolled||winner>=0||rollingDice)return;
+ if(rolled||winner>=0||rollingDice||(onlineRoom&&onlineSeat!==turn))return;
  rollingDice=true;
  const token=++rollToken,die=$('dice'),button=$('roll');
  button.disabled=true;
@@ -190,19 +287,24 @@ function roll(){
  rolled=true;
  if(!pawns[turn].some((_,i)=>canMove(turn,i))){if(dice===6){rolled=false;say('Nie ma możliwego ruchu. Rzuć ponownie.')}else{say('Brak możliwego ruchu. Następna drużyna.');next();return}}
  else say('Wynik: '+dice+'. Wybierz podświetlony pionek.');
- render()
+ render();saveOnlineState()
  },680);
 }
 function move(p,i){
- if(!rolled||p!==turn||winner>=0||!canMove(p,i))return;
+ if(!rolled||p!==turn||winner>=0||!canMove(p,i)||(onlineRoom&&onlineSeat!==turn))return;
  let n=pawns[p][i];n=n===-1?0:n+dice;pawns[p][i]=n;
  if(n<52){const global=(STARTS[p]+n)%52;if(!SAFE.includes(global)){for(let q=0;q<count;q++)if(q!==p)for(let j=0;j<4;j++){const enemy=pawns[q][j];if(enemy>=0&&enemy<52&&(STARTS[q]+enemy)%52===global)pawns[q][j]=-1}}}
  if(pawns[p].every(v=>v===57)){winner=p;rolled=false;say('🏆 Wygrywa '+TEAMS[p].name+' — '+TEAMS[p].leader+'!');$('roll').disabled=true;render();return}
  if(dice===6){rolled=false;say('Szóstka! '+TEAMS[p].name+' rzuca ponownie.')}else next();
- render()
+ render();saveOnlineState()
 }
 function next(){turn=(turn+1)%count;rolled=false;dice=0;$('dice').classList.remove('rolling');$('dice').textContent='⚀';if(winner<0)say('Tura: '+TEAMS[turn].name+'. Rzuć kostką.');render()}
-renderHero();$('roll').addEventListener('click',roll);$('restart').addEventListener('click',reset);$('playersCount').addEventListener('change',reset);reset();
+renderHero();
+$('createRoom').addEventListener('click',()=>enterRoom('create'));
+$('joinRoom').addEventListener('click',()=>enterRoom('join'));
+$('startOnline').addEventListener('click',startOnlineGame);
+$('roomCode').addEventListener('input',()=>{$('roomCode').value=$('roomCode').value.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,6)});
+$('roll').addEventListener('click',roll);$('restart').addEventListener('click',reset);$('playersCount').addEventListener('change',reset);reset();
 </script>
 </body>
 </html>
