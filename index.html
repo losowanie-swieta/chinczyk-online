@@ -193,11 +193,14 @@ async function saveOnlineState(){
  finally{onlineBusy=false;}
 }
 function showRoom(room){
- $('onlinePlayers').innerHTML=(room.players||[]).map(p=>'<span class="online-player '+(p.host?'host':'')+'">'+escapeHtml(p.name)+(p.seat===onlineSeat?' (Ty)':'')+'</span>').join('');
- $('onlineStatus').textContent='Pokój '+room.code+' · '+(room.players||[]).length+'/4 graczy · '+(room.started?'Gra trwa — stan synchronizuje się automatycznie.':(room.players||[]).length<2?'Czekamy na kolejnego gracza…':'Gotowi do gry. Założyciel może rozpocząć.'));
+ const roomPlayers=room.players||[];
+ const waiting=roomPlayers.length<2;
+ const message=room.started?'Gra trwa — stan synchronizuje się automatycznie.':(waiting?'Czekamy na kolejnego gracza…':'Gotowi do gry. Założyciel może rozpocząć.');
+ $('onlinePlayers').innerHTML=roomPlayers.map(p=>'<span class="online-player '+(p.host?'host':'')+'">'+escapeHtml(p.name)+(p.seat===onlineSeat?' (Ty)':'')+'</span>').join('');
+ $('onlineStatus').textContent='Pokój '+room.code+' · '+roomPlayers.length+'/4 graczy · '+message;
  $('roomCode').value=room.code;
  $('startOnline').hidden=!onlineIsHost||room.started;
- $('startOnline').disabled=(room.players||[]).length<2;
+ $('startOnline').disabled=roomPlayers.length<2;
  $('createRoom').disabled=true;$('joinRoom').disabled=true;
 }
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
