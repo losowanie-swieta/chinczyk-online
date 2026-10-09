@@ -58,6 +58,48 @@ select{color:white;background:#243650}
 .pawn{display:block;width:83%;height:83%;min-width:0;min-height:0;padding:0;border:2px solid white;border-radius:50%;box-shadow:inset -3px -4px 4px #0003,inset 2px 3px 3px #ffffff80,0 2px 3px #0005;position:relative;z-index:2}
 .pawn.selected{outline:3px solid #fff;outline-offset:1px;filter:brightness(1.15)}
 .muted{color:#a5b4ca;text-align:center;font-size:12px;line-height:1.65}
+
+/* Nowa, bardziej dopracowana oprawa */
+:root{--bg:#080d18;--panel:#111b2b;--gold:#f5c76b;--red:#e94b58;--green:#20b982;--yellow:#f2c84b;--blue:#3996f4}
+body{background:radial-gradient(ellipse at 50% -12%,#263d5c 0%,#101a2a 42%,#070b13 82%);background-attachment:fixed}
+header{padding:30px 12px 22px;border-bottom:1px solid #ffffff12}
+header h1{font-size:clamp(26px,6vw,36px);letter-spacing:2px}
+header p{letter-spacing:2.4px;color:#d6b66d}
+main{width:min(100%,650px);padding:18px 14px 36px}
+.panel{padding:17px;border:1px solid #ffffff12;border-radius:20px;background:linear-gradient(145deg,#172438f5,#0e1725f5);box-shadow:0 18px 40px #0004,inset 0 1px #ffffff09}
+button,select{border-radius:13px;transition:transform .16s ease,filter .16s ease,box-shadow .16s ease}
+button:hover:not(:disabled){filter:brightness(1.1);transform:translateY(-1px)}
+#players{gap:10px}
+.player{position:relative;overflow:hidden;padding:12px 12px 12px 15px;border:1px solid #ffffff12;border-radius:14px;background:linear-gradient(135deg,#ffffff09,#ffffff03);font-size:12px}
+.player:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--player-color,#8391a8)}
+.player:nth-child(1){--player-color:var(--red)}.player:nth-child(2){--player-color:var(--green)}.player:nth-child(3){--player-color:var(--yellow)}.player:nth-child(4){--player-color:var(--blue)}
+.player.active{border-color:#f5c76b99;background:linear-gradient(135deg,#f5c76b18,#ffffff04);box-shadow:0 0 0 1px #f5c76b20,inset 0 0 22px #f5c76b08}
+#status{margin:12px 0;padding:13px;border-radius:14px;background:#080f1c;border:1px solid #ffffff12;font-size:13px}
+#dice{font-size:66px;margin:10px 0 16px;filter:drop-shadow(0 8px 12px #0008);transform-origin:center}
+#dice.rolling{animation:diceToss .55s cubic-bezier(.2,.8,.2,1)}
+@keyframes diceToss{0%{transform:translateY(0) rotate(0) scale(1)}25%{transform:translateY(-14px) rotate(80deg) scale(1.12)}55%{transform:translateY(2px) rotate(210deg) scale(.96)}80%{transform:translateY(-5px) rotate(310deg) scale(1.04)}100%{transform:translateY(0) rotate(360deg) scale(1)}}
+#roll{border-radius:15px;min-height:56px;box-shadow:0 5px 0 #936b2a,0 12px 22px #0004}
+#roll:hover:not(:disabled){box-shadow:0 6px 0 #936b2a,0 14px 26px #0005}
+#board{gap:1px;padding:5px;border:1px solid #d7bd7d;border-radius:15px;background:#d0bd98;box-shadow:0 8px 0 #6d5837,0 22px 36px #0006;isolation:isolate}
+.cell{border-radius:0;background:#f5efdf;overflow:visible}
+.cell.track{z-index:1;background:linear-gradient(145deg,#fffdf6,#e5ddcc);border:1px solid #d4c8af;border-radius:2px;box-shadow:inset 0 1px #fff9}
+.cell.base{border:0;border-radius:0;margin:0}
+.cell.base.red{background:linear-gradient(135deg,#ef5964,#d92f45)}
+.cell.base.green{background:linear-gradient(135deg,#37cf91,#159b69)}
+.cell.base.yellow{background:linear-gradient(135deg,#ffdc65,#e5b72e)}
+.cell.base.blue{background:linear-gradient(135deg,#5aafff,#287bd4)}
+.cell.base-slot{z-index:2;margin:11%;border:2px solid #ffffffc9!important;border-radius:50%;background:radial-gradient(circle at 34% 28%,#fff 0%,#f9f7ef 58%,#ddd5c5 100%)!important;box-shadow:inset 0 3px 7px #0002,0 2px 5px #0002}
+.cell.lane.red{background:#f4a0a7}.cell.lane.green{background:#9ce3c4}.cell.lane.yellow{background:#f5dc8c}.cell.lane.blue{background:#a0cefb}
+.cell.center{z-index:2;border:1px solid #fff5d8;background:conic-gradient(from -45deg,var(--red) 0deg 90deg,var(--green) 90deg 180deg,var(--yellow) 180deg 270deg,var(--blue) 270deg);box-shadow:inset 0 0 0 2px #ffffff80}
+.pawn{appearance:none;-webkit-appearance:none;display:block;width:83%;height:83%;min-width:0;min-height:0;padding:0;border:2px solid #fff;border-radius:50%;box-shadow:inset -3px -4px 5px #0003,inset 2px 3px 4px #ffffff8c,0 2px 4px #0006;position:relative;z-index:4;animation:pawnPop .24s cubic-bezier(.2,.8,.2,1) both}
+.pawn:hover{filter:brightness(1.14);transform:scale(1.06)}
+.pawn.selected{outline:3px solid #fff;outline-offset:1px;filter:brightness(1.18);animation:pawnPulse .85s ease-in-out infinite alternate;cursor:pointer}
+@keyframes pawnPop{from{opacity:0;transform:scale(.45)}to{opacity:1;transform:scale(1)}}
+@keyframes pawnPulse{from{box-shadow:0 0 0 0 #ffffff00,inset -3px -4px 5px #0003,0 2px 4px #0006}to{box-shadow:0 0 0 4px #ffffff66,inset -3px -4px 5px #0003,0 2px 8px #0008}}
+.cell.base-slot .pawn{width:78%;height:78%}
+.muted{color:#aebbd0}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
+
 @media(max-width:390px){header{padding:19px 10px 15px}main{padding:9px 6px 22px}.panel{padding:9px;border-radius:15px}#board{padding:3px;gap:1px}.player{padding:7px 5px;font-size:11px}#dice{font-size:54px}button,select{padding:9px 10px}}
 </style>
 </head>
@@ -214,7 +256,11 @@ function canMove(p,i){
 function roll(){
  if(rolled||winner>=0)return;
  dice=1+Math.floor(Math.random()*6);
- $('dice').textContent=['','⚀','⚁','⚂','⚃','⚄','⚅'][dice];
+ const die=$('dice');
+ die.classList.remove('rolling');
+ void die.offsetWidth;
+ die.textContent=['','⚀','⚁','⚂','⚃','⚄','⚅'][dice];
+ die.classList.add('rolling');
  sixes=dice===6?sixes+1:0;
  if(sixes>=3){
   sixes=0;rolled=false;
@@ -266,6 +312,7 @@ function move(p,i){
 function next(){
  turn=(turn+1)%count;
  rolled=false;dice=0;
+ $('dice').classList.remove('rolling');
  $('dice').textContent='⚀';
  if(winner<0)say('Tura: '+NAMES[turn]+'. Rzuć kostką.');
  render();
