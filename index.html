@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#11100f">
-<title>Polityczny Chińczyk</title>
+<title>Polityczny Chińczyk v0.6.0</title>
 <style>
 
 :root{color-scheme:dark;--gold:#e8c77f;--red:#c73543;--orange:#db7b2d;--green:#167d5b;--blue:#2774c8;--cream:#f3ead8}
@@ -21,7 +21,7 @@ header{width:min(100%,1000px);margin:auto;padding:20px 14px 10px}
 .hero-person svg{width:100%;height:100%;overflow:visible}
 .hero-title{text-align:center;min-width:0}
 .hero-title h1{margin:0;font-size:clamp(22px,4.2vw,39px);line-height:.98;font-weight:1000;letter-spacing:.015em;text-shadow:0 3px 0 #533a1d,0 7px 18px #000a}
-.hero-title h1 span{display:block;color:#f2ca72;font-size:1.12em;margin-top:4px}
+.hero-title h1 span{display:block;color:#f2ca72;font-size:1.12em;margin-top:4px}.version{display:inline-flex;align-items:center;margin-top:8px;padding:3px 8px;border:1px solid #e8c77f66;border-radius:999px;color:#e8c77f;font-size:10px;letter-spacing:.12em;font-weight:850;text-shadow:none;background:#0003}
 .hero-title p{margin:10px 0 0;color:#ded0b4;font-size:clamp(8px,1.4vw,11px);font-weight:800;letter-spacing:.15em;text-transform:uppercase}
 @keyframes floatIn{from{opacity:0;transform:translateY(10px) scale(.94)}to{opacity:1;transform:translateY(0) scale(1)}}
 main{width:min(100%,850px);margin:auto;padding:0 14px 32px}
@@ -72,15 +72,15 @@ select{min-height:40px;border:1px solid #ffffff24;border-radius:10px;background:
 .cell.center-wing.red{background:linear-gradient(135deg,#e95c66,#a92335)}
 .cell.center{z-index:4;border:2px solid #ffe7a0;border-radius:50%;background:radial-gradient(circle at 30% 20%,#fff0b7,#bd8737 60%,#613d16);box-shadow:inset 0 2px 3px #fff9,0 3px 6px #0006}
 .cell.center:after{content:"♔";font-size:clamp(12px,2vw,23px);color:#fff4d2;text-shadow:0 2px 2px #4c2b08}
-.pawn{appearance:none;-webkit-appearance:none;position:relative;z-index:6;display:grid;place-items:center;width:88%;height:88%;min-width:0;min-height:0;padding:0;overflow:hidden;border:2px solid #fff9;border-radius:50%;background:var(--pawn-bg);box-shadow:inset 0 4px 3px #ffffff85,inset -4px -6px 6px #0005,0 3px 0 #0006,0 6px 8px #0007;transition:transform .18s ease,filter .18s ease;animation:pawnPop .22s ease-out both;cursor:pointer}
+.pawn{appearance:none;-webkit-appearance:none;position:relative;z-index:6;display:grid;place-items:center;width:88%;height:88%;min-width:0;min-height:0;padding:0;overflow:hidden;border:2px solid #fff9;border-radius:50%;background:var(--pawn-bg);box-shadow:inset 0 4px 3px #ffffff85,inset -4px -6px 6px #0005,0 3px 0 #0006,0 6px 8px #0007;transition:filter .18s ease;cursor:pointer}
 .pawn svg{display:block;width:100%;height:100%;filter:drop-shadow(0 1px 1px #0004)}
 .pawn:hover{transform:translateY(-2px) scale(1.08);filter:brightness(1.08)}
 .pawn.selected{outline:3px solid #fff;outline-offset:1px;animation:pawnPulse .75s ease-in-out infinite alternate}
-@keyframes pawnPop{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:scale(1)}}
+
 @keyframes pawnPulse{from{box-shadow:0 0 0 0 #fff0,inset 0 4px 3px #ffffff85,inset -4px -6px 6px #0005,0 3px 0 #0006,0 6px 8px #0007}to{box-shadow:0 0 0 4px #ffffff85,inset 0 4px 3px #ffffff85,inset -4px -6px 6px #0005,0 3px 0 #0006,0 8px 12px #0008}}
 .footnote{margin:9px 0 0;text-align:center;color:#aaa08e;font-size:11px}
 @media(max-width:620px){header{padding:10px 7px 8px}.hero{min-height:112px;padding:8px;gap:2px;border-radius:16px}.hero-person{width:clamp(34px,10vw,62px);height:clamp(58px,16vw,85px)}.hero-title h1{font-size:clamp(16px,4.2vw,25px)}.hero-title p{font-size:7px;letter-spacing:.08em;margin-top:6px}main{padding:0 7px 22px}.panel{padding:9px;border-radius:13px}.toolbar{gap:8px}.field{font-size:12px}select{max-width:125px;padding:7px}.player{padding:7px 4px 7px 8px;gap:4px;flex-direction:column;align-items:flex-start}.player-avatar{width:31px;height:31px;font-size:18px}.player-copy b{font-size:10px}.player-copy small{font-size:8px}.gamebar{grid-template-columns:1fr;gap:10px}#status{font-size:13px}.dice-wrap{justify-content:space-between}#dice{width:46px;height:46px;font-size:34px}#roll{flex:1}.board-panel{padding:6px}.board-frame{padding:3px;border-width:1px}.pawn{border-width:1px}}
-@media(max-width:360px){.hero-person{width:30px;height:50px}.hero-title h1{font-size:15px}.hero-title p{letter-spacing:0}.player-copy b{font-size:9px}.player-copy small{font-size:7px}.board-panel{padding:4px}}
+@media(max-width:360px){.hero-person{width:30px;height:50px}.hero-title h1{font-size:15px}.hero-title p{letter-spacing:0}.version{font-size:8px;margin-top:5px}.player-copy b{font-size:9px}.player-copy small{font-size:7px}.board-panel{padding:4px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}}
 
 </style>
@@ -89,7 +89,7 @@ select{min-height:40px;border:1px solid #ffffff24;border-radius:10px;background:
 <header>
  <section class="hero" aria-label="Polityczny Chińczyk — cztery drużyny">
   <div class="hero-side" id="heroLeft"></div>
-  <div class="hero-title"><h1>POLITYCZNY <span>CHIŃCZYK</span></h1><p>Różne poglądy, jeden cel — wygrać!</p></div>
+  <div class="hero-title"><h1>POLITYCZNY <span>CHIŃCZYK</span><small class="version">WERSJA 0.6.0</small></h1><p>Różne poglądy, jeden cel — wygrać!</p></div>
   <div class="hero-side" id="heroRight"></div>
  </section>
 </header>
@@ -151,7 +151,14 @@ function drawPawn(p,i){
  if(n<0){const [x,y]=BASES[p][i];target=at(x,y)}
  else if(n<57){const [x,y]=position(p,n);target=at(x,y)}
  else return;
- const el=document.createElement('button');el.className='pawn';el.style.setProperty('--pawn-bg','radial-gradient(circle at 30% 20%, '+TEAMS[p].color+', '+TEAMS[p].color+' 55%, #16110f 145%)');el.innerHTML=faceSvg(p);el.setAttribute('aria-label',TEAMS[p].name+' — '+TEAMS[p].leader+', pionek '+(i+1));el.title=TEAMS[p].leader+' ('+TEAMS[p].name+')';el.onclick=()=>move(p,i);if(rolled&&p===turn&&canMove(p,i))el.classList.add('selected');target.appendChild(el)
+ const el=document.createElement('button');el.className='pawn';el.style.setProperty('--pawn-bg','radial-gradient(circle at 30% 20%, '+TEAMS[p].color+', '+TEAMS[p].color+' 55%, #16110f 145%)');el.innerHTML=faceSvg(p);el.setAttribute('aria-label',TEAMS[p].name+' — '+TEAMS[p].leader+', pionek '+(i+1));el.title=TEAMS[p].leader+' ('+TEAMS[p].name+')';el.onclick=()=>move(p,i);if(rolled&&p===turn&&canMove(p,i))el.classList.add('selected');
+ const existing=target.querySelectorAll('.pawn');
+ target.appendChild(el);
+ const all=target.querySelectorAll('.pawn');
+ if(all.length>1){
+  const spots=[[2,2],[46,2],[2,46],[46,46]];
+  all.forEach((pawn,index)=>{const spot=spots[index%4];pawn.style.position='absolute';pawn.style.width='52%';pawn.style.height='52%';pawn.style.left=spot[0]+'%';pawn.style.top=spot[1]+'%';pawn.style.zIndex=String(6+index)});
+ }
 }
 function render(){
  cells.forEach(c=>c.querySelectorAll('.pawn').forEach(x=>x.remove()));
