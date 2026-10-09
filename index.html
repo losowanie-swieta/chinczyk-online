@@ -301,7 +301,7 @@ function move(p,i){
  if(dice===6){rolled=false;say('Szóstka! '+TEAMS[p].name+' rzuca ponownie.')}else next();
  render();saveOnlineState()
 }
-function next(){turn=(turn+1)%count;rolled=false;dice=0;$('dice').classList.remove('rolling');$('dice').textContent='⚀';if(winner<0)say('Tura: '+TEAMS[turn].name+'. Rzuć kostką.');render()}
+function next(){turn=(turn+1)%count;rolled=false;dice=0;$('dice').classList.remove('rolling');$('dice').classList.remove('rolled-result');$('dice').textContent='⚀';if(winner<0)say('Tura: '+TEAMS[turn].name+'. Rzuć kostką.');render();saveOnlineState()}
 renderHero();
 $('createRoom').addEventListener('click',()=>enterRoom('create'));
 $('joinRoom').addEventListener('click',()=>enterRoom('join'));
