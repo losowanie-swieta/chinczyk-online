@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#11100f">
-<title>Polityczny Chińczyk v0.6.0</title>
+<title>Polityczny Chińczyk v0.6.1</title>
 <style>
 
 :root{color-scheme:dark;--gold:#e8c77f;--red:#c73543;--orange:#db7b2d;--green:#167d5b;--blue:#2774c8;--cream:#f3ead8}
@@ -54,6 +54,10 @@ select{min-height:40px;border:1px solid #ffffff24;border-radius:10px;background:
 .cell.empty{background:transparent;border:0;box-shadow:none}
 .cell.track{z-index:1;background:linear-gradient(145deg,#fffdf7,#e4d7c0);border:1px solid #c9b895;box-shadow:inset 0 1px #fff,0 1px 1px #7b63421f}
 .cell.track.safe:after{content:"★";display:grid;place-items:center;width:72%;height:72%;border-radius:50%;background:linear-gradient(145deg,#b9b0a0,#827967);color:#fff;font-size:clamp(7px,1.25vw,15px);box-shadow:inset 0 1px #ffffff88,0 2px 3px #0003}
+.cell.track.start-blue{background:linear-gradient(145deg,#6ab7ff,#2676cf);border-color:#b4dcff;box-shadow:inset 0 1px #fff8,0 1px 2px #123d75}
+.cell.track.start-orange{background:linear-gradient(145deg,#ffd09d,#e68a3c);border-color:#ffe2bf;box-shadow:inset 0 1px #fff8,0 1px 2px #87430f}
+.cell.track.start-green{background:linear-gradient(145deg,#a1e6c4,#329f74);border-color:#d0f4e1;box-shadow:inset 0 1px #fff8,0 1px 2px #125c42}
+.cell.track.start-red{background:linear-gradient(145deg,#ff9da5,#ce3c4a);border-color:#ffd5d8;box-shadow:inset 0 1px #fff8,0 1px 2px #79202b}
 .cell.base{border:0}
 .cell.base.blue{background:linear-gradient(145deg,#1e69c2,#123a7a)}
 .cell.base.orange{background:linear-gradient(145deg,#f09a45,#a95119)}
@@ -89,7 +93,7 @@ select{min-height:40px;border:1px solid #ffffff24;border-radius:10px;background:
 <header>
  <section class="hero" aria-label="Polityczny Chińczyk — cztery drużyny">
   <div class="hero-side" id="heroLeft"></div>
-  <div class="hero-title"><h1>POLITYCZNY <span>CHIŃCZYK</span><small class="version">WERSJA 0.6.0</small></h1><p>Różne poglądy, jeden cel — wygrać!</p></div>
+  <div class="hero-title"><h1>POLITYCZNY <span>CHIŃCZYK</span><small class="version">WERSJA 0.6.1</small></h1><p>Różne poglądy, jeden cel — wygrać!</p></div>
   <div class="hero-side" id="heroRight"></div>
  </section>
 </header>
@@ -152,7 +156,6 @@ function drawPawn(p,i){
  else if(n<57){const [x,y]=position(p,n);target=at(x,y)}
  else return;
  const el=document.createElement('button');el.className='pawn';el.style.setProperty('--pawn-bg','radial-gradient(circle at 30% 20%, '+TEAMS[p].color+', '+TEAMS[p].color+' 55%, #16110f 145%)');el.innerHTML=faceSvg(p);el.setAttribute('aria-label',TEAMS[p].name+' — '+TEAMS[p].leader+', pionek '+(i+1));el.title=TEAMS[p].leader+' ('+TEAMS[p].name+')';el.onclick=()=>move(p,i);if(rolled&&p===turn&&canMove(p,i))el.classList.add('selected');
- const existing=target.querySelectorAll('.pawn');
  target.appendChild(el);
  const all=target.querySelectorAll('.pawn');
  if(all.length>1){
