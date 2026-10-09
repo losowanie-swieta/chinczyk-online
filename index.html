@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#11100f">
-<title>Polityczny Chińczyk v0.6.1</title>
+<title>Polityczny Chińczyk v0.6.2</title>
 <style>
 
 :root{color-scheme:dark;--gold:#e8c77f;--red:#c73543;--orange:#db7b2d;--green:#167d5b;--blue:#2774c8;--cream:#f3ead8}
@@ -42,7 +42,9 @@ select{min-height:40px;border:1px solid #ffffff24;border-radius:10px;background:
 #status{font-size:14px;line-height:1.45;font-weight:800;color:#f5ead4}
 #turnHint{margin-top:4px;font-size:11px;color:#bfb3a0;line-height:1.5}
 .dice-wrap{display:flex;align-items:center;gap:12px}
-#dice{width:54px;height:54px;display:grid;place-items:center;font-size:40px;line-height:1;color:#241a0d;border-radius:13px;background:linear-gradient(145deg,#fffdf5,#d9cbb2);border:1px solid #fff9;box-shadow:inset 0 2px 2px #fff,0 5px 0 #756347,0 9px 15px #0005;transform-origin:center}
+#dice{width:58px;height:58px;display:grid;place-items:center;font-size:43px;line-height:1;color:#241a0d;border-radius:15px;background:linear-gradient(145deg,#fffdf7,#e6d9c2 72%,#c9b795);border:1px solid #fff9;box-shadow:inset 0 2px 2px #fff,0 5px 0 #756347,0 9px 15px #0005;transform-origin:center;transition:box-shadow .2s}
+#dice.rolling{box-shadow:inset 0 2px 2px #fff,0 3px 0 #756347,0 5px 10px #0005}
+#dice.rolled-result{box-shadow:inset 0 2px 2px #fff,0 5px 0 #756347,0 0 0 3px #e8c77f55,0 9px 15px #0005}
 #dice.rolling{animation:diceRoll .62s cubic-bezier(.2,.8,.2,1)}
 @keyframes diceRoll{0%{transform:rotate(0) translateY(0)}25%{transform:rotate(100deg) translateY(-9px)}55%{transform:rotate(230deg) translateY(2px)}80%{transform:rotate(310deg) translateY(-4px)}100%{transform:rotate(360deg) translateY(0)}}
 #roll{min-height:46px;border:1px solid #fff0b4;border-radius:12px;padding:9px 15px;background:linear-gradient(180deg,#ffe7a2,#d7a341);color:#21190d;font-weight:950;letter-spacing:.025em;box-shadow:0 4px 0 #75501e,0 8px 14px #0004;white-space:nowrap;cursor:pointer}
@@ -70,12 +72,12 @@ select{min-height:40px;border:1px solid #ffffff24;border-radius:10px;background:
 .cell.lane.green{background:linear-gradient(145deg,#92dfbb,#2b9c70)}
 .cell.lane.red{background:linear-gradient(145deg,#ff9da4,#cf3d4a)}
 .cell.center-wing{z-index:3;border:1px solid #fff8}
-.cell.center-wing.blue{background:linear-gradient(135deg,#3687e1,#154f9c)}
-.cell.center-wing.orange{background:linear-gradient(135deg,#f8b568,#bb671e)}
-.cell.center-wing.green{background:linear-gradient(135deg,#36b783,#0a684a)}
-.cell.center-wing.red{background:linear-gradient(135deg,#e95c66,#a92335)}
-.cell.center{z-index:4;border:2px solid #ffe7a0;border-radius:50%;background:radial-gradient(circle at 30% 20%,#fff0b7,#bd8737 60%,#613d16);box-shadow:inset 0 2px 3px #fff9,0 3px 6px #0006}
-.cell.center:after{content:"♔";font-size:clamp(12px,2vw,23px);color:#fff4d2;text-shadow:0 2px 2px #4c2b08}
+.cell.center-wing.blue{background:linear-gradient(135deg,#d5e2ed,#aebfd0);border-color:#f5f0e6}
+.cell.center-wing.orange{background:linear-gradient(135deg,#e8d6bd,#cbb394);border-color:#f5f0e6}
+.cell.center-wing.green{background:linear-gradient(135deg,#d5dfd1,#a9b9a5);border-color:#f5f0e6}
+.cell.center-wing.red{background:linear-gradient(135deg,#e7d2ce,#c8aaa5);border-color:#f5f0e6}
+.cell.center{z-index:4;border:2px solid #f6e6bd;border-radius:50%;background:radial-gradient(circle at 30% 20%,#fff9e9 0,#e8d7b4 44%,#b99b68 78%,#80613b 100%);box-shadow:inset 0 2px 3px #fff9,0 3px 6px #0004}
+.cell.center:after{content:"♔";font-size:clamp(12px,2vw,23px);color:#76562b;text-shadow:0 1px 0 #fff8}
 .pawn{appearance:none;-webkit-appearance:none;position:relative;z-index:6;display:grid;place-items:center;width:88%;height:88%;min-width:0;min-height:0;padding:0;overflow:hidden;border:2px solid #fff9;border-radius:50%;background:var(--pawn-bg);box-shadow:inset 0 4px 3px #ffffff85,inset -4px -6px 6px #0005,0 3px 0 #0006,0 6px 8px #0007;transition:filter .18s ease;cursor:pointer}
 .pawn svg{display:block;width:100%;height:100%;filter:drop-shadow(0 1px 1px #0004)}
 .pawn:hover{transform:translateY(-2px) scale(1.08);filter:brightness(1.08)}
@@ -93,7 +95,7 @@ select{min-height:40px;border:1px solid #ffffff24;border-radius:10px;background:
 <header>
  <section class="hero" aria-label="Polityczny Chińczyk — cztery drużyny">
   <div class="hero-side" id="heroLeft"></div>
-  <div class="hero-title"><h1>POLITYCZNY <span>CHIŃCZYK</span><small class="version">WERSJA 0.6.1</small></h1><p>Różne poglądy, jeden cel — wygrać!</p></div>
+  <div class="hero-title"><h1>POLITYCZNY <span>CHIŃCZYK</span><small class="version">WERSJA 0.6.2</small></h1><p>Różne poglądy, jeden cel — wygrać!</p></div>
   <div class="hero-side" id="heroRight"></div>
  </section>
 </header>
@@ -135,9 +137,9 @@ function setupBoard(){
  STARTS.forEach((i,p)=>{const [x,y]=track[i];at(x,y).className='cell track start-'+TEAMS[p].base});
 }
 setupBoard();
-let count=4,turn=0,dice=0,rolled=false,sixes=0,winner=-1,pawns=[];
+let count=4,turn=0,dice=0,rolled=false,sixes=0,winner=-1,pawns=[],rollingDice=false,rollToken=0;
 function say(s){$('status').textContent=s}
-function reset(){count=+$('playersCount').value;turn=0;dice=0;rolled=false;sixes=0;winner=-1;pawns=Array.from({length:count},()=>[-1,-1,-1,-1]);$('dice').textContent='⚀';$('roll').disabled=false;say('Tura: '+TEAMS[turn].name+'. Rzuć kostką.');render()}
+function reset(){rollToken++;rollingDice=false;count=+$('playersCount').value;turn=0;dice=0;rolled=false;sixes=0;winner=-1;pawns=Array.from({length:count},()=>[-1,-1,-1,-1]);$('dice').textContent='⚀';$('roll').disabled=false;say('Tura: '+TEAMS[turn].name+'. Rzuć kostką.');render()}
 function position(p,n){if(n<0||n>=57)return null;if(n>=52)return LANES[p][n-52];return track[(STARTS[p]+n)%52]}
 function faceSvg(p){
  const t=TEAMS[p],glasses=t.glasses?'<g fill="none" stroke="#4b3429" stroke-width="2.2"><rect x="14" y="23" width="13" height="9" rx="3"/><rect x="33" y="23" width="13" height="9" rx="3"/><path d="M27 27h6"/></g>':'';
@@ -169,13 +171,27 @@ function render(){
  $('players').innerHTML=Array.from({length:count},(_,p)=>'<div class="player '+(turn===p&&winner<0?'active':'')+'" style="--team:'+TEAMS[p].color+'"><div class="player-avatar">'+['♟','♟','♣','✌'][p]+'</div><div class="player-copy"><b>'+TEAMS[p].name+'</b><small>'+TEAMS[p].leader+'<br>Baza: '+pawns[p].filter(n=>n===-1).length+' · Dom: '+pawns[p].filter(n=>n===57).length+'</small></div></div>').join('');
 }
 function roll(){
- if(rolled||winner>=0)return;
- dice=1+Math.floor(Math.random()*6);const die=$('dice');die.classList.remove('rolling');void die.offsetWidth;die.textContent=['','⚀','⚁','⚂','⚃','⚄','⚅'][dice];die.classList.add('rolling');sixes=dice===6?sixes+1:0;
+ if(rolled||winner>=0||rollingDice)return;
+ rollingDice=true;
+ const token=++rollToken,die=$('dice'),button=$('roll');
+ button.disabled=true;
+ die.classList.remove('rolled-result','rolling');void die.offsetWidth;die.classList.add('rolling');
+ const faces=['','⚀','⚁','⚂','⚃','⚄','⚅'];
+ let ticks=0;
+ const tumble=setInterval(()=>{die.textContent=faces[1+Math.floor(Math.random()*6)];ticks++},75);
+ setTimeout(()=>{
+  clearInterval(tumble);
+  if(token!==rollToken)return;
+  dice=1+Math.floor(Math.random()*6);
+  die.textContent=faces[dice];die.classList.remove('rolling');die.classList.add('rolled-result');
+  rollingDice=false;button.disabled=false;
+  sixes=dice===6?sixes+1:0;
  if(sixes>=3){sixes=0;rolled=false;say('Trzecia szóstka z rzędu — tura przepada.');next();return}
  rolled=true;
  if(!pawns[turn].some((_,i)=>canMove(turn,i))){if(dice===6){rolled=false;say('Nie ma możliwego ruchu. Rzuć ponownie.')}else{say('Brak możliwego ruchu. Następna drużyna.');next();return}}
  else say('Wynik: '+dice+'. Wybierz podświetlony pionek.');
  render()
+ },680);
 }
 function move(p,i){
  if(!rolled||p!==turn||winner>=0||!canMove(p,i))return;
