@@ -20,7 +20,7 @@ begin
   v_name := left(trim(coalesce(p_name,'')),24);
   if v_name = '' then raise exception 'Wpisz nick gracza.'; end if;
   loop
-    v_code := upper(substr(encode(gen_random_bytes(5),'hex'),1,6));
+    v_code := upper(substr(md5(random()::text || clock_timestamp()::text || v_player),1,6));
     exit when not exists(select 1 from public.chinczyk_rooms where code=v_code);
   end loop;
   insert into public.chinczyk_rooms(code,players)
