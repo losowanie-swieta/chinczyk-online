@@ -3,70 +3,96 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Chińczyk — nowa wersja</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#09111f">
+<title>Chińczyk Premium</title>
 <style>
+:root{
+ --bg:#09111f;--panel:#152238;--gold:#f7ca68;
+ --red:#ef4444;--green:#20b978;--yellow:#f4c943;--blue:#3899f5;
+}
 *{box-sizing:border-box}
-body{margin:0;background:#101827;color:#f8fafc;font-family:system-ui,Arial,sans-serif}
-header{text-align:center;padding:20px 12px;background:#172338}
-h1{margin:0;font-size:27px}header p{margin:5px 0 0;color:#bdc9da}
-main{width:min(100%,620px);margin:auto;padding:12px}
-.panel{background:#1b2940;border:1px solid #34445e;border-radius:16px;padding:12px;margin-bottom:12px}
-.row{display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap}
-button,select{font:inherit;border:0;border-radius:10px;padding:11px 14px}
-button{background:#f4c542;color:#172338;font-weight:800;cursor:pointer}
-select{background:#334763;color:white}
-#status{text-align:center;font-weight:700;min-height:44px;padding:10px 0}
-#dice{text-align:center;font-size:48px;line-height:1.2;margin:4px}
-#board{display:grid;grid-template-columns:repeat(15,minmax(0,1fr));aspect-ratio:1;background:#e5e7eb;padding:3px;gap:1px;border-radius:9px;overflow:hidden}
-.cell{position:relative;min-width:0;min-height:0;display:flex;align-items:center;justify-content:center;background:#f8fafc;border-radius:2px}
-.track{background:#fff;border:1px solid #cbd5e1}
-.red{background:#ef4444!important}.green{background:#22a05a!important}.yellow{background:#f3cc38!important}.blue{background:#2994e8!important}
-.base{margin:1px;border-radius:4px;display:flex;align-items:center;justify-content:center}
-.base.red{background:#ef4444}.base.green{background:#22a05a}.base.yellow{background:#f3cc38}.base.blue{background:#2994e8}
-.base-inner{width:76%;height:76%;background:#fff;border-radius:8px;display:grid;grid-template-columns:1fr 1fr;gap:12%;padding:12%}
-.pawn{width:100%;height:100%;border:2px solid white;border-radius:50%;box-shadow:0 1px 4px #0007;cursor:pointer;padding:0;min-width:0;min-height:0}
-.pawn:focus{outline:3px solid #111827;outline-offset:1px}
-.lane.red{background:#fca5a5!important}.lane.green{background:#86efac!important}.lane.yellow{background:#fde68a!important}.lane.blue{background:#93c5fd!important}
-.center{background:conic-gradient(#ef4444 0 25%,#22a05a 0 50%,#f3cc38 0 75%,#2994e8 0)!important}
-.playerlist{display:grid;grid-template-columns:1fr 1fr;gap:6px}
-.player{padding:8px;border-radius:8px;background:#293a53;font-size:13px}
-.player.active{outline:2px solid #f4c542}
-.muted{color:#bdc9da;font-size:12px;text-align:center;line-height:1.5}
-@media(max-width:380px){main{padding:6px}.panel{padding:8px}h1{font-size:23px}#board{padding:2px;gap:1px}}
+body{
+ margin:0;min-height:100vh;color:#f7f8fc;
+ font-family:system-ui,-apple-system,Arial,sans-serif;
+ background:radial-gradient(ellipse at 50% 0%,#294467 0%,transparent 48%),linear-gradient(160deg,#0c1728,#070c16 80%);
+}
+header{text-align:center;padding:24px 12px 18px;border-bottom:1px solid #ffffff15}
+header h1{margin:0;font-size:clamp(27px,7vw,38px);font-weight:950;letter-spacing:3px;text-shadow:0 4px 10px #0007}
+header h1 span{color:var(--gold)}
+header p{margin:6px 0 0;font-size:11px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+main{width:min(100%,590px);margin:auto;padding:14px 12px 28px}
+.panel{margin-bottom:14px;padding:14px;border:1px solid #ffffff15;border-radius:19px;background:linear-gradient(145deg,#1b2a42f5,#101b2df5);box-shadow:0 12px 28px #0003,inset 0 1px #ffffff08}
+.row{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:9px}
+label{color:#b9c6d8;font-size:13px;font-weight:700}
+button,select{min-height:44px;border:1px solid #ffffff18;border-radius:12px;padding:10px 14px;font:inherit}
+button{cursor:pointer;color:#fff;background:linear-gradient(145deg,#344965,#263851);font-weight:800;box-shadow:0 4px 0 #080f1a;transition:filter .12s,transform .12s}
+button:active{transform:translateY(2px);filter:brightness(1.12)}
+button:disabled{opacity:.45;cursor:not-allowed}
+select{color:white;background:#243650}
+#restart{color:#172033;background:linear-gradient(135deg,#ffe6a1,#eeb94f)}
+#players{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.player{padding:10px;border:1px solid #ffffff12;border-radius:12px;background:#ffffff07;font-size:12px;line-height:1.7}
+.player.active{border-color:var(--gold);background:#f7ca6814;box-shadow:inset 3px 0 var(--gold)}
+#status{display:flex;min-height:54px;align-items:center;justify-content:center;margin:10px 0;padding:10px;border-radius:13px;background:#09142299;border:1px solid #ffffff0b;text-align:center;font-size:14px;font-weight:750;line-height:1.5}
+#dice{text-align:center;font-size:62px;line-height:1.2;margin:8px 0 14px;filter:drop-shadow(0 5px 5px #0005)}
+#roll{width:100%;min-height:54px;color:#172033;background:linear-gradient(135deg,#ffe6a0,#efb941);border-color:#ffe9ad;font-size:15px;font-weight:950;letter-spacing:1px;box-shadow:0 5px 0 #976b23,0 9px 20px #0003}
+#roll:active{transform:translateY(3px);box-shadow:0 2px 0 #976b23}
+#board{display:grid;grid-template-columns:repeat(15,minmax(0,1fr));aspect-ratio:1;gap:2px;padding:5px;overflow:hidden;border:2px solid #c6a96b;border-radius:13px;background:#c6b28d;box-shadow:0 8px 0 #665337,0 18px 28px #0006}
+.cell{position:relative;display:flex;min-width:0;min-height:0;align-items:center;justify-content:center;border-radius:2px;background:#f7f0df}
+.cell.track{background:linear-gradient(145deg,#fffdf5,#e6decd);border:1px solid #d1c5ad}
+.cell.base{margin:1px;border:1px solid #ffffff30;border-radius:3px}
+.cell.base.red{background:linear-gradient(145deg,#ff6c68,#c91f37)}
+.cell.base.green{background:linear-gradient(145deg,#43e29a,#07884d)}
+.cell.base.yellow{background:linear-gradient(145deg,#ffe875,#d7a619)}
+.cell.base.blue{background:linear-gradient(145deg,#69bdff,#1768ca)}
+.base-inner{width:78%;height:78%;padding:12%;gap:12%;border-radius:10px;background:#fdf8eb;box-shadow:inset 0 3px 7px #0002,0 2px 4px #0002}
+.base-slot{border:2px solid;border-radius:50%;background:white;box-shadow:inset 0 2px 4px #0001}
+.cell.lane.red{background:#f8a4a2}
+.cell.lane.green{background:#8de2b6}
+.cell.lane.yellow{background:#f5dc80}
+.cell.lane.blue{background:#95caff}
+.cell.center{border:2px solid #fff5d8;background:conic-gradient(#ef4444 0deg 90deg,#20b978 90deg 180deg,#f4c943 180deg 270deg,#3899f5 270deg);box-shadow:inset 0 0 0 2px #ffffff66}
+.pawn{display:block;width:83%;height:83%;min-width:0;min-height:0;padding:0;border:2px solid white;border-radius:50%;box-shadow:inset -3px -4px 4px #0003,inset 2px 3px 3px #ffffff80,0 2px 3px #0005;position:relative;z-index:2}
+.pawn.selected{outline:3px solid #fff;outline-offset:1px;filter:brightness(1.15)}
+.muted{color:#a5b4ca;text-align:center;font-size:12px;line-height:1.65}
+@media(max-width:390px){header{padding:19px 10px 15px}main{padding:9px 6px 22px}.panel{padding:9px;border-radius:15px}#board{padding:3px;gap:1px}.player{padding:7px 5px;font-size:11px}#dice{font-size:54px}button,select{padding:9px 10px}}
 </style>
 </head>
 <body>
-<header><h1>🎲 CHIŃCZYK</h1><p>Klasyczna gra planszowa</p></header>
+<header>
+ <h1>🎲 CHIŃCZYK <span>PREMIUM</span></h1>
+ <p>Klasyczna gra planszowa</p>
+</header>
 <main>
  <section class="panel">
   <div class="row">
-   <label for="playersCount">Gracze:</label>
+   <label for="playersCount">Liczba graczy</label>
    <select id="playersCount">
     <option value="2">2 osoby</option>
     <option value="3">3 osoby</option>
     <option value="4" selected>4 osoby</option>
    </select>
-   <button id="restart">Nowa gra</button>
+   <button id="restart">NOWA GRA</button>
   </div>
  </section>
  <section class="panel">
-  <div id="players" class="playerlist"></div>
-  <div id="status" aria-live="polite">Rozpocznij grę, rzucając kostką.</div>
+  <div id="players"></div>
+  <div id="status" aria-live="polite">Rzuć kostką, aby rozpocząć grę.</div>
   <div id="dice">⚀</div>
-  <div class="row"><button id="roll">RZUĆ KOSTKĄ</button></div>
-  <p class="muted">Wyrzuć 6, aby wyprowadzić pionek. Następnie dotknij pionka, którym chcesz się poruszyć.</p>
+  <button id="roll">🎲 RZUĆ KOSTKĄ</button>
+  <p class="muted">Wyrzuć 6, aby wyprowadzić pionek. Po rzucie wybierz pionek, którym chcesz wykonać ruch.</p>
  </section>
  <section class="panel"><div id="board"></div></section>
- <p class="muted">Wersja testowa — rozgrywka lokalna na jednym urządzeniu.</p>
+ <p class="muted">Wersja testowa • Rozgrywka lokalna na jednym urządzeniu</p>
 </main>
 <script>
-const C=['red','green','yellow','blue'];
-const N=['Czerwoni','Zieloni','Żółci','Niebiescy'];
-const EM=['🔴','🟢','🟡','🔵'];
+const COLORS=['red','green','yellow','blue'];
+const NAMES=['Czerwoni','Zieloni','Żółci','Niebiescy'];
+const EMOJI=['🔴','🟢','🟡','🔵'];
+const PAWN_COLORS=['#ef4444','#20b978','#d5a000','#3899f5'];
 const $=id=>document.getElementById(id);
-const board=$('board');
-const cells=[];
+const board=$('board'),cells=[];
 const track=[
 [1,6],[2,6],[3,6],[4,6],[5,6],
 [6,5],[6,4],[6,3],[6,2],[6,1],[6,0],
@@ -78,96 +104,109 @@ const track=[
 [5,8],[4,8],[3,8],[2,8],[1,8],[0,8],
 [0,7],[0,6]
 ];
-const starts=[0,13,26,39];
-const bases=[
+const STARTS=[0,13,26,39];
+const BASES=[
 [[1,1],[4,1],[1,4],[4,4]],
 [[10,1],[13,1],[10,4],[13,4]],
 [[10,10],[13,10],[10,13],[13,13]],
 [[1,10],[4,10],[1,13],[4,13]]
 ];
-const lanes=[
+const LANES=[
 [[1,7],[2,7],[3,7],[4,7],[5,7]],
 [[7,1],[7,2],[7,3],[7,4],[7,5]],
 [[13,7],[12,7],[11,7],[10,7],[9,7]],
 [[7,13],[7,12],[7,11],[7,10],[7,9]]
 ];
-const safe=[0,8,13,21,26,34,39,47];
-let count=4,turn=0,dice=0,rolled=false,sixes=0,winner=-1;
-let pawns=[];
+const SAFE=[0,8,13,21,26,34,39,47];
 const key=(x,y)=>y*15+x;
+function at(x,y){return cells[key(x,y)]}
 for(let y=0;y<15;y++)for(let x=0;x<15;x++){
  const d=document.createElement('div');
  d.className='cell';d.dataset.x=x;d.dataset.y=y;
  board.appendChild(d);cells.push(d);
 }
-function at(x,y){return cells[key(x,y)]}
-function baseCell(x,y,c){
- const d=at(x,y);d.className='cell base '+c;
+function setupBoard(){
+ const corners=[[0,0],[9,0],[9,9],[0,9]];
+ BASES.forEach((list,p)=>{
+  const [cx,cy]=corners[p];
+  for(let y=cy;y<cy+6;y++)for(let x=cx;x<cx+6;x++)at(x,y).className='cell base '+COLORS[p];
+  const inner=document.createElement('div');
+  inner.className='base-inner';
+  inner.style.display='grid';
+  inner.style.gridTemplateColumns='1fr 1fr';
+  inner.style.gridTemplateRows='1fr 1fr';
+  inner.style.gridColumn='1 / 7';
+  inner.style.gridRow='1 / 7';
+  for(let i=0;i<4;i++){
+   const slot=document.createElement('div');
+   slot.className='base-slot';
+   slot.style.borderColor=PAWN_COLORS[p];
+   inner.appendChild(slot);
+  }
+  at(cx+1,cy+1).appendChild(inner);
+ });
+ track.forEach(([x,y],i)=>{
+  at(x,y).className='cell track';
+  if(SAFE.includes(i)){
+   at(x,y).style.background='#dcecff';
+   at(x,y).style.boxShadow='inset 0 0 0 2px #8bb7e7';
+  }
+ });
+ LANES.forEach((list,p)=>list.forEach(([x,y])=>at(x,y).className='cell lane '+COLORS[p]));
+ at(7,7).className='cell center';
+ STARTS.forEach((i,p)=>{
+  const [x,y]=track[i];
+  at(x,y).className='cell track';
+  at(x,y).style.background=PAWN_COLORS[p];
+ });
 }
-bases.forEach((list,p)=>{
- const corners=[[0,0],[9,0],[9,9],[0,9]][p];
- for(let y=corners[1];y<corners[1]+6;y++)
- for(let x=corners[0];x<corners[0]+6;x++)at(x,y).className='cell '+C[p];
- const [x,y]=corners;
- const home=document.createElement('div');home.className='base-inner';
- home.style.gridColumn='1 / 3';home.style.gridRow='1 / 3';
- for(let i=0;i<4;i++){
-  const slot=document.createElement('div');slot.style.borderRadius='50%';
-  slot.style.border='2px solid '+['#ef4444','#22a05a','#c9a000','#2994e8'][p];
-  slot.style.background='#fff';home.appendChild(slot);
- }
- at(x+1,y+1).appendChild(home);
-});
-track.forEach(([x,y],i)=>{
- at(x,y).className='cell track';
- if(safe.includes(i))at(x,y).style.background='#dbeafe';
-});
-lanes.forEach((list,p)=>list.forEach(([x,y])=>at(x,y).className='cell lane '+C[p]));
-at(7,7).className='cell center';
-const startsPos=starts.map(i=>track[i]);
-starts.forEach((i,p)=>{
- const [x,y]=track[i];at(x,y).className='cell track '+C[p];
-});
-function reset(){
- count=+$('playersCount').value;turn=0;dice=0;rolled=false;sixes=0;winner=-1;
- pawns=Array.from({length:4},()=>[-1,-1,-1,-1]);
- $('dice').textContent='⚀';$('roll').disabled=false;
- say('Tura: '+N[turn]+'. Rzuć kostką.');render();
-}
+setupBoard();
+let count=4,turn=0,dice=0,rolled=false,sixes=0,winner=-1;
+let pawns=[];
 function say(s){$('status').textContent=s}
-function pos(p,n){
- if(n<0)return null;
- if(n>=57)return null;
- if(n>=52)return lanes[p][n-52];
- return track[(starts[p]+n)%52];
+function reset(){
+ count=+$('playersCount').value;
+ turn=0;dice=0;rolled=false;sixes=0;winner=-1;
+ pawns=Array.from({length:count},()=>[-1,-1,-1,-1]);
+ $('dice').textContent='⚀';
+ $('roll').disabled=false;
+ say('Tura: '+NAMES[turn]+'. Rzuć kostką.');
+ render();
+}
+function position(p,n){
+ if(n<0||n>=57)return null;
+ if(n>=52)return LANES[p][n-52];
+ return track[(STARTS[p]+n)%52];
 }
 function drawPawn(p,i){
- const n=pawns[p][i];let el;
+ const n=pawns[p][i];
+ let target;
  if(n<0){
-  const [x,y]=bases[p][i];
-  el=document.createElement('button');
-  el.className='pawn';el.style.background=['#ef4444','#22a05a','#d5a000','#2994e8'][p];
-  el.title=N[p]+' — pionek '+(i+1)+' w bazie';
-  at(x,y).appendChild(el);
+  const [x,y]=BASES[p][i];
+  target=at(x,y);
  }else if(n<57){
-  const [x,y]=pos(p,n);
-  el=document.createElement('button');el.className='pawn';
-  el.style.background=['#ef4444','#22a05a','#d5a000','#2994e8'][p];
-  el.title=N[p]+' — pionek '+(i+1);
-  at(x,y).appendChild(el);
+  const [x,y]=position(p,n);
+  target=at(x,y);
  }else return;
+ const el=document.createElement('button');
+ el.className='pawn';
+ el.style.background='linear-gradient(145deg,'+PAWN_COLORS[p]+', '+PAWN_COLORS[p]+')';
+ el.setAttribute('aria-label',NAMES[p]+', pionek '+(i+1));
+ el.title=NAMES[p]+' — pionek '+(i+1);
  el.onclick=()=>move(p,i);
- el.setAttribute('aria-label',N[p]+' pionek '+(i+1));
+ if(rolled&&p===turn&&canMove(p,i))el.classList.add('selected');
+ target.appendChild(el);
 }
 function render(){
  cells.forEach(c=>{
-  const base=c.classList.contains('base');
-  if(base){const inner=c.querySelector('.base-inner');if(inner)inner.querySelectorAll('.pawn').forEach(x=>x.remove());}
-  else c.querySelectorAll('.pawn').forEach(x=>x.remove());
+  c.querySelectorAll('.pawn').forEach(x=>x.remove());
+  const inner=c.querySelector('.base-inner');
+  if(inner)inner.querySelectorAll('.pawn').forEach(x=>x.remove());
  });
  for(let p=0;p<count;p++)for(let i=0;i<4;i++)drawPawn(p,i);
  $('players').innerHTML=Array.from({length:count},(_,p)=>
- '<div class="player '+(turn===p&&winner<0?'active':'')+'">'+EM[p]+' '+N[p]+'<br>W domu: '+pawns[p].filter(n=>n===-1).length+' · Na mecie: '+pawns[p].filter(n=>n===57).length+'</div>').join('');
+  '<div class="player '+(turn===p&&winner<0?'active':'')+'">'+EMOJI[p]+' <b>'+NAMES[p]+'</b><br>W bazie: '+pawns[p].filter(n=>n===-1).length+' · W domu: '+pawns[p].filter(n=>n===57).length+'</div>'
+ ).join('');
 }
 function canMove(p,i){
  const n=pawns[p][i];
@@ -179,46 +218,64 @@ function roll(){
  if(rolled||winner>=0)return;
  dice=1+Math.floor(Math.random()*6);
  $('dice').textContent=['','⚀','⚁','⚂','⚃','⚄','⚅'][dice];
- if(dice===6)sixes++;else sixes=0;
+ sixes=dice===6?sixes+1:0;
  if(sixes>=3){
-  sixes=0;rolled=false;say('Trzecia szóstka z rzędu — tura przepada.');next();return;
+  sixes=0;rolled=false;
+  say('Trzecia szóstka z rzędu — tura przepada.');
+  next();return;
  }
  rolled=true;
  if(!pawns[turn].some((_,i)=>canMove(turn,i))){
-  if(dice===6){rolled=false;say('Nie ma możliwego ruchu. Rzuć ponownie.');}
-  else{say('Brak możliwego ruchu.');next();}
- }else say('Wynik: '+dice+'. Wybierz jeden z podświetlonych pionków.');
+  if(dice===6){
+   rolled=false;
+   say('Brak możliwego ruchu. Możesz rzucić ponownie.');
+  }else{
+   say('Brak możliwego ruchu. Następny gracz.');
+   next();return;
+  }
+ }else say('Wynik: '+dice+'. Dotknij podświetlonego pionka.');
  render();
 }
 function move(p,i){
  if(!rolled||p!==turn||winner>=0||!canMove(p,i))return;
  let n=pawns[p][i];
- if(n===-1)n=0;else n+=dice;
+ if(n===-1)n=0;
+ else n+=dice;
  pawns[p][i]=n;
  if(n<52){
-  const global=(starts[p]+n)%52;
-  if(!safe.includes(global)){
-   for(let q=0;q<count;q++)if(q!==p)
-   for(let j=0;j<4;j++){
-    const enemy=pawns[q][j];
-    if(enemy>=0&&enemy<52&&(starts[q]+enemy)%52===global)pawns[q][j]=-1;
+  const global=(STARTS[p]+n)%52;
+  if(!SAFE.includes(global)){
+   for(let q=0;q<count;q++)if(q!==p){
+    for(let j=0;j<4;j++){
+     const enemy=pawns[q][j];
+     if(enemy>=0&&enemy<52&&(STARTS[q]+enemy)%52===global)pawns[q][j]=-1;
+    }
    }
   }
  }
- if(pawns[p].every(v=>v===57)){winner=p;say('🏆 '+N[p]+' wygrywają!');$('roll').disabled=true;rolled=false;render();return;}
- if(dice===6){rolled=false;say('Szóstka! Możesz rzucić ponownie.');}
- else next();
+ if(pawns[p].every(v=>v===57)){
+  winner=p;
+  rolled=false;
+  say('🏆 Wygrywają '+NAMES[p]+'!');
+  $('roll').disabled=true;
+  render();return;
+ }
+ if(dice===6){
+  rolled=false;
+  say('Szóstka! Rzuć ponownie.');
+ }else next();
  render();
 }
 function next(){
- turn=(turn+1)%count;rolled=false;dice=0;
+ turn=(turn+1)%count;
+ rolled=false;dice=0;
  $('dice').textContent='⚀';
- if(winner<0)say('Tura: '+N[turn]+'. Rzuć kostką.');
+ if(winner<0)say('Tura: '+NAMES[turn]+'. Rzuć kostką.');
  render();
 }
-$('roll').onclick=roll;
-$('restart').onclick=reset;
-$('playersCount').onchange=reset;
+$('roll').addEventListener('click',roll);
+$('restart').addEventListener('click',reset);
+$('playersCount').addEventListener('change',reset);
 reset();
 </script>
 </body>
