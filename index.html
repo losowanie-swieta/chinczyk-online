@@ -224,7 +224,7 @@ async function enterRoom(kind){
  $('createRoom').disabled=true;$('joinRoom').disabled=true;
  try{
   const data=kind==='create'?await rpc('create_chinczyk_room',{p_name:name}):await rpc('join_chinczyk_room',{p_code:$('roomCode').value,p_name:name});
-  onlineRoom=data.code;onlinePlayerId=data.player_id;onlineSeat=(data.players||[]).find(p=>p.id===onlinePlayerId)?.seat??0;onlineIsHost=!!(data.players||[]).find(p=>p.id===onlinePlayerId)?.host;
+  onlineRoom=data.code;onlinePlayerId=data.player_id;$('playersCount').disabled=true;$('restart').disabled=true;onlineSeat=(data.players||[]).find(p=>p.id===onlinePlayerId)?.seat??0;onlineIsHost=!!(data.players||[]).find(p=>p.id===onlinePlayerId)?.host;
   $('onlineStatus').textContent='Łączę z pokojem '+onlineRoom+'…';
   await pollRoom();
   if(onlinePoll)clearInterval(onlinePoll);
