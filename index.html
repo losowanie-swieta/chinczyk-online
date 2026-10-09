@@ -297,7 +297,7 @@ function move(p,i){
  if(!rolled||p!==turn||winner>=0||!canMove(p,i)||(onlineRoom&&onlineSeat!==turn))return;
  let n=pawns[p][i];n=n===-1?0:n+dice;pawns[p][i]=n;
  if(n<52){const global=(STARTS[p]+n)%52;if(!SAFE.includes(global)){for(let q=0;q<count;q++)if(q!==p)for(let j=0;j<4;j++){const enemy=pawns[q][j];if(enemy>=0&&enemy<52&&(STARTS[q]+enemy)%52===global)pawns[q][j]=-1}}}
- if(pawns[p].every(v=>v===57)){winner=p;rolled=false;say('🏆 Wygrywa '+TEAMS[p].name+' — '+TEAMS[p].leader+'!');$('roll').disabled=true;render();return}
+ if(pawns[p].every(v=>v===57)){winner=p;rolled=false;say('🏆 Wygrywa '+TEAMS[p].name+' — '+TEAMS[p].leader+'!');$('roll').disabled=true;render();saveOnlineState();return}
  if(dice===6){rolled=false;say('Szóstka! '+TEAMS[p].name+' rzuca ponownie.')}else next();
  render();saveOnlineState()
 }
